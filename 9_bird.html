@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3.박물관 앞 정자</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.860429,127.137958);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><9>오송재 조류 관찰대</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>9.오송제 조류 관찰대</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://file2.instiz.net/data/file/20141001/6/0/3/603c079716ca835438dcc5410bca5cc5.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong>< 오송제 조류 관찰대 ></strong></p>
+        <p>오송제 인근 건지산에는<br> 오리나무와 편백나무, 플라타너스 등이 군락을 이루고 있어<br> 다른 지역에 비해 생태공원 조성의 탁월한 여건을 갖추고 있는 것으로<br>나타나 생태공원으로 조성될 경우 수질개선 및 시민들의 휴식공간과<br> 자연친화적 생태공원으로 크게 기여하고있다.
+
+        </p>
+
+    </div>
+</body>
+</html>

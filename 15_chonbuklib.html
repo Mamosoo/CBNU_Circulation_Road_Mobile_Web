@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>15.중앙도서관</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.848362,127.131157);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><15>중앙도서관</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>15.중앙도서관</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://www.veritas-a.com/news/photo/201409/28476_15172_2339.JPG" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong>< 중앙도서관 ></strong></p>
+        <p>1955년 개관하여 전북대학교 구성원들의 학습활동의 중추적 역활을 하는기구<br>연면적23,108제곱미터 150만여 장서 4천여종의 학술지보유<br>지역주민에게도 개방중이다.
+        </p>
+
+    </div>
+</body>
+</html>

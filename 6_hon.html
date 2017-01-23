@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3.박물관 앞 정자</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.853676,127.12986);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><6>혼불문학 공원</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>6.혼불문학 공원</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://cfile233.uf.daum.net/image/184E24444F6674A8154077" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong><혼불문학 공원></strong></p>
+        <p>소설 '혼불'을 쓴 최명희 선생의 묘역이 있는 곳이다.<br> 흔히 최명희 문학상 혼불 문학상 으로 불리는<br> 것의 모태가 되는 분의 묘소이다.
+
+        </p>
+
+    </div>
+</body>
+</html>

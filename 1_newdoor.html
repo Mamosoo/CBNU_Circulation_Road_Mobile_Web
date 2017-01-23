@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1.전대 힐링숲</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.841011,127.132120);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><1>전북대학교힐링숲</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <!--
+    <div style="background-color: navajowhite;">
+        -->
+    <div style="text-align: center">
+     <p><strong>1.전북대학교 힐링숲</strong></p>
+    </div>
+
+<div id="map-canvas"></div>
+<div class="pic">
+    <img src="http://image.newsis.com/2014/11/06/NISI20141106_0010323926_web.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+</div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+
+    <p><strong>< 전대 힐링숲 ></strong></p>
+        <p>전북대학교 신정문에 위치하고 있는 힐링숲이다.<br>타대학과 다르게 아름다운 자연경관으로 랜드마크 역활을 한다.<br>전북대학교는 산림청 산하 녹색사업단이 공모한 녹색나눔숲 사업에 선정되어<br>3억원을 지원받아 기존 소나무 숲이 조성되어 있던곳에<br> 환경 조각물과, 자수화단, 오색초 화원 등을 조성했다.</p>
+</div>
+</body>
+</html>

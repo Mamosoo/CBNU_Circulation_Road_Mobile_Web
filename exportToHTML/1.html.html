@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>1.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(232,191,106); }
+.s1 { color: rgb(186,186,186); }
+.s2 { color: rgb(169,183,198); }
+.s3 { color: rgb(104,151,187); }
+.s4 { color: rgb(165,194,97); }
+.s5 { color: rgb(204,120,50); }
+.s6 { color: rgb(204,120,50); font-weight: bold; }
+.s7 { color: rgb(106,135,89); }
+.s8 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+1.html</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&lt;!DOCTYPE </span><span class="s1">html</span><span class="s0">&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;html&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;head&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;title&gt;</span><span class="s2">1.전대 힐링숲</span><span class="s0">&lt;/title&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;style&gt;</span><span class="s2"> 
+        </span><span class="s0">#map-canvas </span><span class="s2">{ </span><span class="s1">width</span><span class="s2">: </span><span class="s3">500</span><span class="s4">px</span><span class="s5">; </span><span class="s1">height</span><span class="s2">: </span><span class="s3">400</span><span class="s4">px</span><span class="s5">; </span><span class="s1">background-color</span><span class="s2">: </span><span class="s3">#CCC</span><span class="s5">; </span><span class="s2">} 
+    </span><span class="s0">&lt;/style&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;script </span><span class="s1">src=</span><span class="s4">&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos&quot;</span><span class="s0">&gt;&lt;/script&gt;</span><span class="s2"> 
+    </span><span class="s0">&lt;script&gt;</span><span class="s2"> 
+        </span><span class="s6">function </span><span class="s2">initialize() { 
+            </span><span class="s6">var </span><span class="s2">mapCanvas = document.getElementById(</span><span class="s7">'map-canvas'</span><span class="s2">)</span><span class="s5">;</span><span class="s2"> 
+            </span><span class="s6">var </span><span class="s2">myLatlng = </span><span class="s6">new </span><span class="s2">google.maps.LatLng(</span><span class="s3">35.841011</span><span class="s5">,</span><span class="s3">127.132120</span><span class="s2">)</span><span class="s5">;        </span><span class="s8">// 위경도 설정</span><span class="s2"> 
+            </span><span class="s6">var </span><span class="s2">mapOptions = {          </span><span class="s8">// 구글 맵 옵션</span><span class="s2"> 
+                center: myLatlng</span><span class="s5">,</span><span class="s2"> 
+                zoom: </span><span class="s3">16</span><span class="s5">,</span><span class="s2"> 
+                mapTypeId: google.maps.MapTypeId.ROADMAP 
+            }</span><span class="s5">;</span><span class="s2"> 
+ 
+            </span><span class="s8">// 구글 맵 생성</span><span class="s2"> 
+            </span><span class="s6">var </span><span class="s2">map = </span><span class="s6">new </span><span class="s2">google.maps.Map(mapCanvas</span><span class="s5">, </span><span class="s2">mapOptions)</span><span class="s5">;</span><span class="s2"> 
+ 
+            </span><span class="s6">var </span><span class="s2">contentString = </span><span class="s7">'&lt;div style=&quot;width:100px;height:50px;&quot;&gt;&lt;strong&gt;&lt;1&gt;전북대학교힐링숲&lt;/strong&gt; &lt;br&gt;전북대학교 둘레길 포토존&lt;/div&gt;'</span><span class="s5">;       </span><span class="s8">// 말풍선 내용</span><span class="s2"> 
+ 
+            </span><span class="s6">var </span><span class="s2">infowindow = </span><span class="s6">new </span><span class="s2">google.maps.InfoWindow({ 
+                content: contentString</span><span class="s5">,</span><span class="s2"> 
+                size: </span><span class="s6">new </span><span class="s2">google.maps.Size(</span><span class="s3">200</span><span class="s5">,</span><span class="s3">100</span><span class="s2">) 
+            })</span><span class="s5">;</span><span class="s2"> 
+ 
+            </span><span class="s6">var </span><span class="s2">marker = </span><span class="s6">new </span><span class="s2">google.maps.Marker({ 
+                position: myLatlng</span><span class="s5">,</span><span class="s2"> 
+                map: map</span><span class="s5">,</span><span class="s2"> 
+                draggable:</span><span class="s6">false</span><span class="s5">,            </span><span class="s8">// 마커 드래그 가능</span><span class="s2"> 
+                title: </span><span class="s7">'Hello World!'   </span><span class="s8">// 마커 : 도움말 풍선(마우스 오버 시)</span><span class="s2"> 
+            })</span><span class="s5">;</span><span class="s2"> 
+            google.maps.event.addListener(marker</span><span class="s5">, </span><span class="s7">'click'</span><span class="s5">, </span><span class="s6">function</span><span class="s2">() { 
+                infowindow.open(map</span><span class="s5">, </span><span class="s2">marker)</span><span class="s5">;</span><span class="s2"> 
+ 
+                </span><span class="s6">if </span><span class="s2">(marker.getAnimation() != </span><span class="s6">null</span><span class="s2">) { 
+                    marker.setAnimation(</span><span class="s6">null</span><span class="s2">)</span><span class="s5">;</span><span class="s2"> 
+                } </span><span class="s6">else </span><span class="s2">{ 
+                    marker.setAnimation(google.maps.Animation.BOUNCE)</span><span class="s5">;</span><span class="s2"> 
+                } 
+            })</span><span class="s5">;</span><span class="s2"> 
+ 
+            marker.setMap(map)</span><span class="s5">;</span><span class="s2"> 
+        } 
+ 
+        google.maps.event.addDomListener(window</span><span class="s5">, </span><span class="s7">'load'</span><span class="s5">, </span><span class="s2">initialize)</span><span class="s5">;</span><span class="s2"> 
+    </span><span class="s0">&lt;/script&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/head&gt;</span><span class="s2"> 
+ 
+</span><span class="s0">&lt;body&gt;</span><span class="s2"> 
+ 
+</span><span class="s0">&lt;div </span><span class="s1">id=</span><span class="s4">&quot;map-canvas&quot;</span><span class="s0">&gt;&lt;/div&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/body&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;body&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;p&gt;&lt;strong&gt;</span><span class="s2">1. 전대 힐링숲</span><span class="s0">&lt;/strong&gt;&lt;/p&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;p&gt;</span><span class="s2">전북대학교 신정문에 위치하고 있는 힐링숲이다.</span><span class="s0">&lt;br&gt;</span><span class="s2">타대학과 다르게 아름다운 자연경관으로 랜드마크 역활을 한다.</span><span class="s0">&lt;/p&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/body&gt;</span><span class="s2"> 
+</span><span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>

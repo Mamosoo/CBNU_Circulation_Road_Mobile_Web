@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3.박물관 앞 정자</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.850977,127.150423);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><12>건지산 정상(동편)</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>12.건지산 정상(동편)</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://cfile211.uf.daum.net/R400x0/2349A644579A181307C4B4" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong>< 건지산 정상 ></strong></p>
+        <p>전라북도 전주시 덕진구 송천동과 덕진동 사이에 걸쳐 있는 산이다.<br> 조경단, 솦속의 도서관등 다양한 생태체험의 장으로 활용되고있다.<br>특히 최근 전북대 둘레길로 인해 활성화 되고있다.
+
+        </p>
+
+    </div>
+</body>
+</html>

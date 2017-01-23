@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3.박물관 앞 정자</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.849408,127.120469);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><4>덕진공원 청년사랑둑길</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>4.덕진공원 청년사랑둑길</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://www.ynl.or.kr/data/file/portfolio02/2040665215_2a8f26bd_B4F6C1F8B0F8BFF804.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong><덕진공원 천년사랑둑길></strong></p>
+        <p>전주시에서 덕진공원 일대를 역사,문화,생태 관광자원의<br> 스토리텔링을 개발하기 위해 덕진공원 주위에 조성된 길로,<br> 덕진연못과 연꽃을 융합하여 콘텐츠를 만든 곳이다.
+
+        </p>
+
+    </div>
+</body>
+</html>

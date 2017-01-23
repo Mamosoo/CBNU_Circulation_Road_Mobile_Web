@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3.박물관 앞 정자</title>
+    <style>
+        #map-canvas { width: 300px; height: 300px; margin: auto; background-color: #CCC; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooj3Jzb19bxyetFND2wVL72bEsj7bVos"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var myLatlng = new google.maps.LatLng(35.852655,127.149356);		// 위경도 설정
+            var mapOptions = {			// 구글 맵 옵션
+                center: myLatlng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            // 구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var contentString = '<div style="width:100px;height:50px;"><strong><11>동물원 뒷길</strong> <br>전북대학교 둘레길 포토존</div>';		// 말풍선 내용
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                size: new google.maps.Size(200,100)
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable:false,			// 마커 드래그 가능
+                title: 'Hello World!'	// 마커 : 도움말 풍선(마우스 오버 시)
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+
+                if (marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div class ="name">
+    <div style="text-align: center">
+        <p><strong>11.동물원 뒷길</strong></p>
+    </div>
+
+    <div id="map-canvas"></div>
+    <div class="pic">
+        <img src="http://www.domin.co.kr/news/photo/201410/1042443_191861_1743.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="300px" height="200px"/>
+
+    </div>
+</body>
+<body>
+<div class ="text">
+    <div style="text-align:center">
+        <p><strong>< 동물원 뒷길 ></strong></p>
+        <p>1978년 6월 10일 개원한 전주동물원은 지방동물원으로는<br> 유일하게 호랑이, 사자, 기린, 하마, 들소, 큰뿔소, 낙타,<br>
+            침팬지, 캥거루 등 동물을 다수 보유하고 있으며<br> 현재 희귀동물인 반달가슴곰, 얼룩말, 재규어 등 <br>총106종에 670여 마리의 동물을 전시하고 있습니다.<br>
+            도심 속의 푸른 쉼터로 자리잡은 전주동물원은 <br>무료로 유모차와 휠체어를 대여하고 있으며,<br>또한 850여 대의 주차공간을 확보하여 저렴하게 이용할 수 있도록 하고 있습니다.<br> 동물원은 연중 개장하여 믿고 찾을 수 있는 시민 휴식처가<br> 될 수 있도록 노력하고 있으며, 관람객의 불편사항 처리는<br> 직원들의 의무사항으로 인식하고 다시 찾고 싶은 동물원 만들기에 최선을 다하고 있습니다.
+
+        </p>
+
+    </div>
+</body>
+</html>
